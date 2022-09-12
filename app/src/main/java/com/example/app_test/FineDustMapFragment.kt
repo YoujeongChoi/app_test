@@ -1,16 +1,14 @@
 package com.example.app_test
 
 import android.os.Bundle
+import android.text.method.Touch.scrollTo
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.app_test.databinding.FragmentFineDustMapBinding
 import com.example.app_test.databinding.FragmentHomeBinding
-import com.google.android.gms.maps.CameraUpdate
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
@@ -24,7 +22,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [FineDustMapFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FineDustMapFragment : Fragment() {
+class FineDustMapFragment : Fragment() , OnMapReadyCallback{
     // TODO: Rename and change types of parameters
 
     private lateinit var mView: MapView
@@ -46,23 +44,33 @@ class FineDustMapFragment : Fragment() {
 
         var rootView = inflater.inflate(R.layout.fragment_fine_dust_map, container, false  )
 
-        mView = rootView.findViewById(R.id.mv_contactUs_gMap)
+        mView = rootView.findViewById(R.id.mv_contactUs_gMap) as MapView
         mView.onCreate(savedInstanceState)
-//        mView.getMapAsync(this)
+        mView.getMapAsync(this)
+
+//        val mapFragment = supportFragmentManager
+//            .findFragmentById(R.id.map) as SupportMapFragment
+//        mapFragment.getMapAsync(this
 
        return rootView
 
+
+
+
     }
 
-    fun onMapReady(googleMap: GoogleMap) {
-        val seoul = LatLng(37.654601, 127.060530)
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(seoul))
-        googleMap.moveCamera(CameraUpdateFactory.zoomTo(15f))
+    override fun onMapReady(googleMap: GoogleMap) {
+        val seoul = LatLng(37.3676587, 126.5965)
+//        val myLocation = LatLng(37.3676587, 126.5965)
+        val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.3676587, 126.5965))
+//        googleMap.moveCamera(cameraUpdate)
+        googleMap.moveCamera(cameraUpdate)
+        googleMap.moveCamera(CameraUpdateFactory.zoomTo(10f))
 
         val marker = MarkerOptions()
             .position(seoul)
-            .title("Nowon")
-            .snippet("노원역입니다.")
+            .title("Kookmin univ.")
+            .snippet("국민대학교")
         googleMap?.addMarker(marker)
     }
 
@@ -118,3 +126,4 @@ class FineDustMapFragment : Fragment() {
             }
     }
 }
+
