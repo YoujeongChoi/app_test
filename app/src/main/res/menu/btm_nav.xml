@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tab_home"
+        android:enabled="true"
+        android:icon="@drawable/dust_icon"
+        android:title="홈"/>
+
+    <item
+        android:id="@+id/tab_map"
+        android:enabled="true"
+        android:icon="@drawable/map_icon"
+        android:title="미세먼지 지도"/>
+
+    <item
+        android:id="@+id/tab_star"
+        android:enabled="true"
+        android:icon="@drawable/star_icon"
+        android:title="즐겨찾기"/>
+
+    <item
+        android:id="@+id/tab_user"
+        android:enabled="true"
+        android:icon="@drawable/user_icon"
+        android:title="마이페이지"/>
+</menu>
