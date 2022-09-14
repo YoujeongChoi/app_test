@@ -61,17 +61,22 @@ class FineDustMapFragment : Fragment() , OnMapReadyCallback{
 
     override fun onMapReady(googleMap: GoogleMap) {
         val seoul = LatLng(37.3676587, 126.5965)
-//        val myLocation = LatLng(37.3676587, 126.5965)
-//        val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.3676587, 126.5965))
-//        googleMap.moveCamera(cameraUpdate)
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(seoul))
-        googleMap.moveCamera(CameraUpdateFactory.zoomBy(10f))
 
         val marker = MarkerOptions()
             .position(seoul)
             .title("Kookmin univ.")
             .snippet("국민대학교")
         googleMap?.addMarker(marker)
+
+        val myLocation = LatLng(37.3676587, 126.5965)
+
+//        val myLocation = LatLng(37.3676587, 126.5965)
+//        val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.3676587, 126.5965))
+//        googleMap.moveCamera(cameraUpdate)
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(seoul, 16f))
+//        googleMap.moveCamera(CameraUpdateFactory.zoomBy(3f))
+
+
     }
 
     override fun onStart() {
