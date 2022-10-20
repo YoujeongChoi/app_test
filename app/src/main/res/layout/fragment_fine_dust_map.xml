@@ -11,10 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <com.google.android.gms.maps.MapView
+            android:id="@+id/mv_contactUs_gMap"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:id="@+id/mv_contactUs_gMap"/>
+            android:layout_height="700dp" />
     </LinearLayout>
 
 <!--    <?xml version="1.0" encoding="utf-8"?>-->
@@ -31,19 +32,20 @@
         android:layout_gravity="bottom"
         android:background="@color/white"
         android:paddingTop="30dp"
-        android:paddingBottom="30dp"
+        android:paddingBottom="130dp"
         android:paddingStart="40dp"
         android:paddingEnd="40dp">
         <TextView
             android:id="@+id/map_address_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="성북구 정릉로"
+            android:text="서울시 용산구 원효로1가"
             android:textStyle="bold"
             android:textSize="20dp"
+            android:fontFamily="@font/nully"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
-        
+
         <ImageButton
             android:id="@+id/map_star_ib"
             android:layout_width="20dp"
@@ -73,16 +75,17 @@
             app:layout_constraintTop_toBottomOf="@id/map_share_ib"
             app:layout_constraintStart_toStartOf="@id/map_address_tv"
             android:background="@color/black"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="20dp"/>
 
         <TextView
             android:id="@+id/map_dust_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="미세먼지"
+            android:fontFamily="@font/nully"
             app:layout_constraintStart_toStartOf="@id/map_address_tv"
             app:layout_constraintTop_toBottomOf="@id/map_line"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="10dp"/>
 
         <TextView
@@ -90,9 +93,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="초미세먼지"
+            android:fontFamily="@font/nully"
             app:layout_constraintStart_toStartOf="@id/map_dust_tv"
             app:layout_constraintTop_toBottomOf="@id/map_dust_tv"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="15dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

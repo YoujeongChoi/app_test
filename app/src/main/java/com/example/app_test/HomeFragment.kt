@@ -1,11 +1,16 @@
 package com.example.app_test
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.app_test.databinding.FragmentHomeBinding
+import com.example.app_test.retrofit.RetrofitManager
+import com.example.app_test.retrofit.utils.RESPONSE_STATE
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,6 +29,8 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+
     }
 
     override fun onCreateView(
@@ -32,6 +39,28 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         mBinding = FragmentHomeBinding.inflate(inflater, container, false)
+
+
+
+        mBinding.homeMenuIb.setOnClickListener {
+            Toast.makeText(this.context, "클릭!!!!", Toast.LENGTH_SHORT).show()
+            Log.d(TAG, "HomeFragment - onCreateView() called/ 메뉴 버튼이 클릭됨")
+
+            // 검색 api 호출
+            RetrofitManager.instance.searchPhotos(searchTerm = "바다", completion = {
+                responseState, responseBody ->
+                when(responseState) {
+                    RESPONSE_STATE.OKAY -> {
+                        Log.d(TAG, "api 호출 성공: ${responseBody}")
+                    }
+                    RESPONSE_STATE.FAIL -> {
+                        Toast.makeText(this.context, "api 호출 에러입니다.", Toast.LENGTH_SHORT).show()
+                        Log.d(TAG, "api 호출 실패: $responseBody")
+                    }
+                }
+            })
+
+        }
 
         return mBinding.root
     }

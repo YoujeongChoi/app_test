@@ -60,7 +60,7 @@ class FineDustMapFragment : Fragment() , OnMapReadyCallback{
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-        val seoul = LatLng(37.3676587, 126.5965)
+        val seoul = LatLng(37.54547408, 126.9650744)
 
         val marker = MarkerOptions()
             .position(seoul)
@@ -73,7 +73,7 @@ class FineDustMapFragment : Fragment() , OnMapReadyCallback{
 //        val myLocation = LatLng(37.3676587, 126.5965)
 //        val cameraUpdate = CameraUpdate.scrollTo(LatLng(37.3676587, 126.5965))
 //        googleMap.moveCamera(cameraUpdate)
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(seoul, 16f))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(seoul, 15f))
 //        googleMap.moveCamera(CameraUpdateFactory.zoomBy(3f))
 
 
