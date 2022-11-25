@@ -1,16 +1,23 @@
 package com.example.app_test
 
+import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
-import android.text.method.Touch.scrollTo
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.app_test.databinding.FragmentFineDustMapBinding
-import com.example.app_test.databinding.FragmentHomeBinding
+import com.example.app_test.model.DustResponse
+import com.example.app_test.retrofit.RetrofitClient
+import com.example.app_test.retrofit.RetrofitInterface
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import retrofit2.Call
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,10 +30,11 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class FineDustMapFragment : Fragment() , OnMapReadyCallback{
-    // TODO: Rename and change types of parameters
 
-    private lateinit var mView: MapView
-    private lateinit var mBinding: FragmentFineDustMapBinding
+    lateinit var mView: MapView
+    lateinit var binding: FragmentFineDustMapBinding
+    var pm10 = 0
+    var pm2_5 = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,23 +49,72 @@ class FineDustMapFragment : Fragment() , OnMapReadyCallback{
 //        mBinding = FragmentFineDustMapBinding.inflate(inflater, container, false)
 //
 //        return mBinding.root
+        binding = FragmentFineDustMapBinding.inflate(inflater, container, false)
 
-        var rootView = inflater.inflate(R.layout.fragment_fine_dust_map, container, false  )
+//        var rootView = inflater.inflate(R.layout.fragment_fine_dust_map, container, false  )
+        var rootView = binding
 
-        mView = rootView.findViewById(R.id.mv_contactUs_gMap) as MapView
+//        mView = rootView.findViewById(R.id.mv_contactUs_gMap) as MapView
+        mView = binding.mvContactUsGMap as MapView
         mView.onCreate(savedInstanceState)
         mView.getMapAsync(this)
 
 //        val mapFragment = supportFragmentManager
 //            .findFragmentById(R.id.map) as SupportMapFragment
 //        mapFragment.getMapAsync(this
-
-       return rootView
-
+        getWeatherData()
 
 
+        binding.mapStarIb.setOnClickListener{
+            binding.mapStarIb.setImageResource(R.drawable.star_icon_yellow)
 
+//            activity?.let{
+//                val intent = Intent(context, BookmarkFragment::class.java)
+//                intent.putExtra("pm2_5", pm2_5)
+//                intent.putExtra("pm10", pm10)
+//                intent.putExtra("address", binding.mapAddressTv.text)
+//                startActivity(intent)
+//            }
+
+        }
+        return binding.root
     }
+
+    private fun getWeatherData() {
+        Log.d(ContentValues.TAG, "hello - onResponse() called")
+
+        Toast.makeText(this.context,"hi", Toast.LENGTH_SHORT).show()
+
+        val weatherDataInterface = RetrofitClient.sRetrofit.create(RetrofitInterface::class.java)
+        weatherDataInterface.getWeatherData("creates").enqueue(object :retrofit2.Callback<DustResponse>{
+            //                @SuppressLint("SetTextI18n")
+            override fun onResponse(
+                // response 가 제대로 불러왔을 때
+                call: Call<DustResponse>,
+                response: Response<DustResponse>
+
+            ) {
+                if(response.isSuccessful) {
+                    val result = response.body() as DustResponse
+                    binding.mapDustData.text = result.PM_10.toString()
+                    pm10 = result.PM_10
+                    binding.mapFineDustData.text = result.PM_2_5.toString()
+                    pm2_5 = result.PM_2_5
+                } else {
+
+                    Log.d(ContentValues.TAG, "통신실패 - onResponse() called")
+                }
+            }
+
+            override fun onFailure(call: Call<DustResponse>, t: Throwable) {         // 서버통신 실패했을 때
+
+                Log.d(ContentValues.TAG, "$t")
+                Log.d(ContentValues.TAG, "통신실패..!")
+            }
+
+        })
+    }
+
 
     override fun onMapReady(googleMap: GoogleMap) {
         val seoul = LatLng(37.54547408, 126.9650744)

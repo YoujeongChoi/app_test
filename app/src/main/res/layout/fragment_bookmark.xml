@@ -12,44 +12,46 @@
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/mypage_top_bar"
+            android:id="@+id/bookmark_top_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             android:orientation="horizontal"
-            android:paddingTop="10dp"
-            android:paddingStart="10dp">
+            android:paddingStart="10dp"
+            android:paddingTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
                 android:id="@+id/mypage_back_btn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/back_icon"
                 android:background="@android:color/transparent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/back_icon"
+                android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
-                android:scaleType="fitCenter" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:text="즐겨찾기"
-                android:textSize="20dp"
                 android:textColor="@color/black"
-                android:textStyle="bold"/>
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/bookmark_rv"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="즐겨찾기 목록"
-            app:layout_constraintTop_toBottomOf="@id/mypage_top_bar"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/bookmark_top_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

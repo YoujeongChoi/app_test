@@ -27,8 +27,8 @@
             android:id="@+id/home_time_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="62dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="44dp"
             android:fontFamily="@font/nully"
             android:text="10월 20일 12시 12분"
             android:textColor="#24A9E1"
@@ -200,9 +200,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:visibility="visible"/>
 
-            // app:layout_constraintEnd_toStartOf="@+id/home_text_04"
-
-
         <View
             android:id="@+id/home_line"
             android:layout_width="340dp"
@@ -211,7 +208,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/home_face"
             android:layout_marginTop="50dp"/>
-
 
         <TextView
             android:id="@+id/home_info_tv"

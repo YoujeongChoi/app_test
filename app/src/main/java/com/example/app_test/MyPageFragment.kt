@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.app_test.databinding.FragmentHomeBinding
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.app_test.databinding.FragmentMyPageBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -21,7 +21,7 @@ private const val ARG_PARAM2 = "param2"
 class MyPageFragment : Fragment() {
     // TODO: Rename and change types of parameters
 
-    private lateinit var mBinding:  FragmentMyPageBinding
+    private lateinit var binding:  FragmentMyPageBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,9 +33,21 @@ class MyPageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        mBinding = FragmentMyPageBinding.inflate(inflater, container, false)
+        binding = FragmentMyPageBinding.inflate(inflater, container, false)
 
-        return mBinding.root
+        val baemin1 = arrayListOf(
+            MainBaemin1("이름", "최유정"),
+            MainBaemin1("전화번호", "010-8851-9132"),
+            MainBaemin1("이메일", "yj91322@gmail.com"),
+            MainBaemin1("성별", "여자")
+        )
+
+        val layoutManager_baemin = LinearLayoutManager(this.context)
+        layoutManager_baemin.orientation = LinearLayoutManager.VERTICAL
+        binding.mypageRv.layoutManager = layoutManager_baemin
+        binding.mypageRv.adapter = MainBaemin1Adapter(baemin1)
+
+        return binding.root
     }
 
     companion object {

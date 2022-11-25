@@ -11,7 +11,7 @@ interface IRetrofit {
 
     // https://www.unsplash.com/search/photos/?query="cat"     (searchTerm = "cat")
     @GET(API.SEARCH_PHOTOS)
-    abstract fun searchPhotos(@Query("query") searchTerm: String): Call<JsonElement>?
+    fun searchPhotos(@Query("query") searchTerm: String): Call<JsonElement>?
 //    abstract fun searchPhotos( seachTerm: String, searchTerm: String) : Call<JsonElement>?
 
     @GET(API.SEARCH_USERS)

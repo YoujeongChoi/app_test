@@ -33,4 +33,21 @@
         android:fontWeight="400"
         android:font="@font/gangwon"/>
 
+    <font android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/millgram"/>
+
+    <font android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/millgram_bold"/>
+
+    <font android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/doriangore"/>
+
+    <font android:fontStyle="normal"
+        android:fontWeight="400"
+        android:font="@font/slasherfilm"/>
+
+
 </font-family>

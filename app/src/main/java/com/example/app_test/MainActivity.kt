@@ -27,8 +27,8 @@ class MainActivity : AppCompatActivity() {
 //            changeFragment(it.itemId)
 //            true
 //        }
-//
-//        changeFragment(R.id.tab_home)
+
+        changeFragment(R.id.tab_home)
 
     }
 
@@ -60,25 +60,25 @@ class MainActivity : AppCompatActivity() {
             .replace(binding.mainContent.id, fragment).commit()
     }
 
-//    private fun changeFragment(menuItemId: Int) {
-//        val targetFragment = getFragment(menuItemId)
-//
-//        supportFragmentManager.beginTransaction()
-//            .replace(R.id.btm_nav_rl, targetFragment)
-//            .commitAllowingStateLoss()
-//    }
-//
-//    private fun getFragment(menuItemId: Int): Fragment {
-//        val title = when (menuItemId) {
-//            R.id.tab_home -> "page1"
-//            R.id.tab_map -> "page2"
-//            R.id.tab_star -> "page3"
-//            R.id.tab_user -> "page4"
-//            else -> throw IllegalArgumentException("not found menu item id")
-//        }
-//
-//        return SampleFragment
-//    }
+    private fun changeFragment(menuItemId: Int) {
+        val targetFragment = getFragment(menuItemId)
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_content, targetFragment)
+            .commitAllowingStateLoss()
+    }
+
+    private fun getFragment(menuItemId: Int) : Fragment {
+        val title = when (menuItemId) {
+            R.id.tab_home -> "page1"
+            R.id.tab_map -> "page2"
+            R.id.tab_star -> "page3"
+            R.id.tab_user -> "page4"
+            else -> throw IllegalArgumentException("not found menu item id")
+        }
+
+        return HomeFragment.newInstance(title)
+    }
 
 
 }

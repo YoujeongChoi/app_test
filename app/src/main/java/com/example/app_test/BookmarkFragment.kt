@@ -1,12 +1,15 @@
 package com.example.app_test
 
+import android.R.attr.data
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.app_test.databinding.FragmentBookmarkBinding
-import com.example.app_test.databinding.FragmentHomeBinding
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,7 +24,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class BookmarkFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private lateinit var mBinding: FragmentBookmarkBinding
+    private lateinit var binding: FragmentBookmarkBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,9 +36,38 @@ class BookmarkFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        mBinding = FragmentBookmarkBinding.inflate(inflater, container, false)
+        binding = FragmentBookmarkBinding.inflate(inflater, container, false)
 
-        return mBinding.root
+//        activity?.let{
+//            val intent = Intent(context, FineDustMapFragment::class.java)
+//            startActivity(intent)
+//            if(intent.hasExtra("address")) {
+//                val add = intent.getStringExtra("address")
+//                val pm10 = intent.getStringExtra("pm10")
+//                val pm2_5 = intent.getStringExtra("pm2_5")
+//
+//
+//            } else {
+//            }
+//        }
+        val bookmark = arrayListOf(
+            Bookmark("서울시 용산구 원효로1가", "미세먼지 14㎍/㎥", "초미세먼지 14㎍/㎥")
+        )
+        val layoutManager_bookmark = LinearLayoutManager(this.context)
+        layoutManager_bookmark.orientation = LinearLayoutManager.VERTICAL
+        binding.bookmarkRv.layoutManager = layoutManager_bookmark
+        binding.bookmarkRv.adapter = BookmarkAdapter(bookmark)
+
+
+
+
+        
+
+
+
+
+
+        return binding.root
     }
 
     companion object {
